@@ -9,39 +9,80 @@
 
 
 
-void Build::print_upgrades()
+void Build::print_health()
 {
-    std::cout << "Damage for hit: " << m_knife->get_damage() << std::endl;
-    std::cout << "Increased damage: " << m_knife->get_knife_upgrade().get_increased_damage() << std::endl;
-    std::cout << std::endl;
-    std::cout << "Attack speed: " << m_knife->get_attack_speed() << std::endl;
-    std::cout << "Increased attack speed: " << m_knife->get_knife_upgrade().get_increased_attack_speed() << std::endl;
-    std::cout << std::endl;
-    std::cout << "Final damage: " << calculate_damage_for_hit() << std::endl;
-    std::cout << std::endl;
-    std::cout << "Final attack speed: " << calculate_attack_speed() << std::endl;
-    std::cout << std::endl;
-    std::cout << "DPS: " << calculate_DPS() << std::endl;
+    std::cout << "Your health: " << m_thief->get_health() << std::endl;
+}
+
+void Build::print_mana()
+{
+    std::cout << "Your mana: " << m_thief->get_mana() << std::endl;
+}
+
+void Build::print_damage()
+{
+    std::cout << "Your damage: " << m_thief->get_damage();
 }
 
 
-void Build::set_Weapon(Weapon* _knife)
+void Build::print_damage_per_hit()
 {
-    m_knife = _knife;
+    std::cout << "Damage per hit: " << calculate_damage_per_hit() << std::endl;
+}
+
+void Build::print_attack_speed()
+{
+    std::cout << "Attack speed: " << calculate_attack_speed() << std::endl;
+}
+
+void Build::print_dps()
+{
+    std::cout << "DPS: " << calculate_dps() << std::endl;
 }
 
 
-float Build::calculate_damage_for_hit()
+float Build::calculate_damage_per_hit()
 {
-    return m_knife->get_damage() * m_knife->get_knife_upgrade().get_increased_damage();
+    return m_knife->get_physical_damage() + m_knife->get_knife_upgrade().get_increased_damage();
 }
 
 float Build::calculate_attack_speed()
 {
-    return m_knife->get_attack_speed() * m_knife->get_knife_upgrade().get_increased_attack_speed();
+    return m_knife->get_attack_speed() + m_knife->get_knife_upgrade().get_increased_attack_speed();
 }
 
-float Build::calculate_DPS()
+float Build::calculate_dps()
 {
-    return calculate_damage_for_hit() * calculate_attack_speed();
+    return calculate_damage_per_hit() * calculate_attack_speed();
 }
+
+
+
+void Build::pick_gigant()
+{
+    m_thief->set_health(calculate_gigant_health());
+    m_thief->set_damage(calculate_gigant_damage());
+}
+
+
+float Build::calculate_gigant_health()
+{
+    return m_thief->get_health() + m_thief->get_gigant().get_increased_health();
+}
+
+float Build::calculate_gigant_damage()
+{
+    return m_thief->get_damage() + m_thief->get_gigant().get_increased_damage();
+}
+
+// float Build::calculate_mana()
+// {
+//     return m_thief->get_mana() + m_thief->get_clever().get_increased_mana() +
+//            m_thief->get_killer().get_increased_mana();
+// }
+
+// float Build::calculate_bonus_damage()
+// {
+//     return m_thief->get_damage() + m_thief->get_gigant().get_increased_damage() +
+//            m_thief->get_clever().get_increased_damage() + m_thief->get_killer().get_increased_damage();
+// }
