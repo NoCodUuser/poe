@@ -4,12 +4,6 @@
 class Orbs
 {
 private:
-    Orbs* m_fire_orb;
-    Orbs* m_cold_orb;
-    Orbs* m_electric_orb;
-    Orbs* m_physical_orb;
-    Orbs* m_light_orb;
-
     float m_increased_fire_damage = 0;
     float m_increased_cold_damage = 0;
     float m_increased_electric_damage = 0;

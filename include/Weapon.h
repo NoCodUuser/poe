@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Upgrade_weapon.h>
-
 
 class Weapon
 {
@@ -11,8 +9,6 @@ private:
     float m_cold_damage = 0;
     float m_electric_damage = 0;
     float m_attack_speed = 0;
-
-    Upgrade_Weapon m_knife_upgrade;
 
 public:
     // Weapon();
@@ -30,9 +26,6 @@ public:
     inline void set_cold_damage(float _cold_damage) { m_cold_damage = _cold_damage; };
     inline void set_electric_damage(float _electric_damage) { m_electric_damage = _electric_damage; };
     inline void set_attack_speed(float _attack_speed) { m_attack_speed = _attack_speed; };
-
-    inline Upgrade_Weapon& get_knife_upgrade() { return m_knife_upgrade; };
-
 
 };
 
