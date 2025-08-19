@@ -36,19 +36,15 @@ int main()
     forge->set_physical_orb(physical_orb);
     forge->set_light_orb(light_orb);
 
-    knife->set_physical_damage(10);
-    knife->set_fire_damage(0.5);
-    knife->set_attack_speed(1.5);
-
     fire_orb->set_increased_fire_damage(3);
     cold_orb->set_increased_cold_damage(3);
     electric_orb->set_increased_electric_damage(3);
     physical_orb->set_increased_physical_damage(5);
     light_orb->set_increased_attack_speed(0.5);
 
-    // knife->get_knife_upgrade().set_increased_damage(3);
-    // knife->get_knife_upgrade().set_increased_damage(2);
-    // knife->get_knife_upgrade().set_increased_attack_speed(0.2);
+    knife->set_physical_damage(10);
+    knife->set_fire_damage(0.5);
+    knife->set_attack_speed(1.5);
 
     thief->set_health(100);
     thief->set_mana(50);
@@ -64,19 +60,39 @@ int main()
 
     thief->get_killer().set_increased_health(10);
     thief->get_killer().set_increased_mana(10);
-    thief->get_killer().set_increased_physical_damage(1.15);
+    thief->get_killer().set_increased_total_damage(1.15);
+
+    forge->use_cold_orb();
+    forge->use_electric_orb();
+    forge->use_physical_orb();
 
     thief_ice_blades->pick_gigant();
-    thief_ice_blades->pick_gigant();
-    // thief_ice_blades->pick_gigant();
-    // thief_ice_blades->pick_clever();
-    // thief_ice_blades->pick_killer();
+    thief_ice_blades->pick_clever();
 
+    thief_ice_blades->update_total_stats();
+
+    thief_ice_blades->pick_killer();
 
     thief_ice_blades->print_health();
+    thief_ice_blades->print_mana();
+
+    thief_ice_blades->print_total_elemental_damage();
+    thief_ice_blades->print_total_physical_damage();
+    thief_ice_blades->print_attack_speed();
+    thief_ice_blades->print_total_damage();
     thief_ice_blades->print_dps();
 
-    // delete все объекты, потом чистить сразу!!
+    delete knife;
+    delete thief;
+    delete thief_ice_blades;
+
+    delete fire_orb;
+    delete cold_orb;
+    delete electric_orb;
+    delete physical_orb;
+    delete light_orb;
+
+    delete forge;
 }
 
 

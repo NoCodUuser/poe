@@ -15,29 +15,32 @@ private:
     Weapon* m_knife = nullptr;
     Character* m_thief = nullptr;
 
-    // float m_total_fire_damage = m_thief->get_fire_damage() + m_knife->get_fire_damage();
-    // float m_total_cold_damage = m_thief->get_cold_damage() + m_knife->get_cold_damage();
-    // float m_total_electric_damage = m_thief->get_electric_damage() + m_knife->get_electric_damage();
-    // float m_total_physical_damage = m_thief->get_physical_damage() + m_knife->get_physical_damage();
-    // float m_total_attack_speed = m_thief->get_attack_speed() + m_knife->get_attack_speed();
-    // float m_total_elemental_damage = m_total_fire_damage + m_total_cold_damage + m_total_electric_damage;
-    // float m_total_damage = m_total_elemental_damage + m_total_physical_damage;
-
-    // инициалзировать нулем, вместо расчетов в переменной добавить функции
     float m_total_fire_damage = 0;
     float m_total_cold_damage = 0;
     float m_total_electric_damage = 0;
-    float m_total_physical_damage = m_thief->get_physical_damage() + m_knife->get_physical_damage();
-    float m_total_attack_speed = m_thief->get_attack_speed() + m_knife->get_attack_speed();
-    float m_total_elemental_damage = m_total_fire_damage + m_total_cold_damage + m_total_electric_damage;
-    float m_total_damage = m_total_elemental_damage + m_total_physical_damage;
+    float m_total_physical_damage = 0;
+    float m_total_attack_speed = 0;
+    float m_total_damage = 0;
 
 public:
-    inline void set_knife(Weapon* _knife){ m_knife = _knife; };
-    inline void set_thief(Character* _thief) { m_thief = _thief; };
+    inline void set_knife(Weapon* _knife){ m_knife = _knife; }
+    inline void set_thief(Character* _thief) { m_thief = _thief; }
 
-    inline float get_total_damage() const { return m_total_damage; };
-    inline void set_total_damage(float _total_damage) { m_total_damage = _total_damage; };
+    inline float get_total_fire_damage() const { return m_total_fire_damage; }
+    inline float get_total_cold_damage() const { return m_total_cold_damage; }
+    inline float get_total_electric_damage() const { return m_total_electric_damage; }
+    inline float get_total_physical_damage() const { return m_total_physical_damage; }
+    inline float get_total_attack_speed() const { return m_total_attack_speed; }
+    inline float get_total_damage() const { return m_total_damage; }
+
+    inline void set_total_fire_damage(float _total_fire_damage) { m_total_fire_damage = _total_fire_damage; }
+    inline void set_total_cold_damage(float _total_cold_damage) { m_total_cold_damage = _total_cold_damage; }
+    inline void set_total_electric_damage(float _total_electric_damage) { m_total_electric_damage = _total_electric_damage; }
+    inline void set_total_physical_damage(float _total_physical_damage) { m_total_physical_damage = _total_physical_damage; }
+    inline void set_total_attack_speed(float _total_attack_speed) { m_total_attack_speed = _total_attack_speed; }
+    inline void set_total_damage(float _total_damage) { m_total_damage = _total_damage; }
+
+    void update_total_stats();
 
     void print_health();
     void print_mana();
@@ -46,7 +49,14 @@ public:
     void print_total_elemental_damage();
     void print_total_physical_damage();
     void print_attack_speed();
-    void print_dps();
+    void print_dps(); // доделать
+
+    float calculate_total_fire_damage();
+    float calculate_total_cold_damage();
+    float calculate_total_electric_damage();
+    float calculate_total_physical_damage();
+    float calculate_total_attack_speed();
+    float calculate_total_damage();
 
     void pick_gigant();
     void pick_clever();

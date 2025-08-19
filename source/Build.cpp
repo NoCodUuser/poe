@@ -7,6 +7,18 @@
 
 
 
+void Build::update_total_stats()
+{
+    set_total_fire_damage(calculate_total_fire_damage());
+    set_total_cold_damage(calculate_total_cold_damage());
+    set_total_electric_damage(calculate_total_electric_damage());
+    set_total_physical_damage(calculate_total_physical_damage());
+    set_total_attack_speed(calculate_total_attack_speed());
+    set_total_damage(calculate_total_damage());
+}
+
+
+
 void Build::print_health()
 {
     std::cout << "Your health: " << m_thief->get_health() << std::endl;
@@ -26,14 +38,14 @@ void Build::print_total_damage()
 
 void Build::print_total_elemental_damage()
 {
-    std::cout << "Fire damage: " << m_total_fire_damage;
-    std::cout << "Cold damage: " << m_total_cold_damage;
-    std::cout << "Electrc damage: " << m_total_electric_damage;
+    std::cout << "Fire damage: " << m_total_fire_damage << std::endl;
+    std::cout << "Cold damage: " << m_total_cold_damage << std::endl;
+    std::cout << "Electrc damage: " << m_total_electric_damage << std::endl;
 }
 
 void Build::print_total_physical_damage()
 {
-    std::cout << "Physical damage: " << m_total_physical_damage;
+    std::cout << "Physical damage: " << m_total_physical_damage << std::endl;
 }
 
 void Build::print_attack_speed()
@@ -48,17 +60,56 @@ void Build::print_dps()
 
 
 
+float Build::calculate_total_fire_damage()
+{
+    return m_thief->get_fire_damage() + m_knife->get_fire_damage();
+}
+
+float Build::calculate_total_cold_damage()
+{
+    return m_thief->get_cold_damage() + m_knife->get_cold_damage();
+}
+
+float Build::calculate_total_electric_damage()
+{
+    return m_thief->get_electric_damage() + m_knife->get_electric_damage();
+}
+
+float Build::calculate_total_physical_damage()
+{
+    return m_thief->get_physical_damage() + m_knife->get_physical_damage();
+}
+
+float Build::calculate_total_attack_speed()
+{
+    return m_thief->get_attack_speed() + m_knife->get_attack_speed();
+}
+
+float Build::calculate_total_damage()
+{
+    return m_total_fire_damage + m_total_cold_damage + m_total_electric_damage + m_total_physical_damage;
+}
+
+
+
 void Build::pick_gigant()
 {
     m_thief->set_health(calculate_gigant_health());
+
     m_thief->set_physical_damage(calculate_gigant_damage());
+    m_total_physical_damage = m_thief->get_physical_damage() + m_knife->get_physical_damage();
 }
 
 void Build::pick_clever()
 {
     m_thief->set_fire_damage(calculate_clever_fire_damage());
+    m_total_fire_damage = m_thief->get_fire_damage() + m_knife->get_fire_damage();
+
     m_thief->set_cold_damage(calculate_clever_cold_damage());
+    m_total_cold_damage = m_thief->get_cold_damage() + m_knife->get_cold_damage();
+
     m_thief->set_electric_damage(calculate_clever_electric_damage());
+    m_total_electric_damage = m_thief->get_electric_damage() + m_knife->get_electric_damage();
 
     m_thief->set_mana(calculate_clever_mana());
 }
@@ -67,6 +118,7 @@ void Build::pick_killer()
 {
     m_thief->set_health(calculate_killer_health());
     m_thief->set_mana(calculate_killer_mana());
+
     set_total_damage(calculate_killer_damage());
 }
 
