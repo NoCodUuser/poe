@@ -19,7 +19,7 @@ private:
     Passive_Skills m_killer;
 
 public:
-    // Character();
+    Character();
     // ~Character()
 public:
     inline float get_health() const { return m_health; }

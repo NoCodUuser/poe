@@ -23,7 +23,7 @@ private:
     float m_total_damage = 0;
 
 public:
-    inline void set_knife(Weapon* _knife){ m_knife = _knife; }
+    inline void set_weapon(Weapon* _weapon){ m_knife = _weapon; }
     inline void set_thief(Character* _thief) { m_thief = _thief; }
 
     inline float get_total_fire_damage() const { return m_total_fire_damage; }

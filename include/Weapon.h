@@ -1,5 +1,19 @@
 #pragma once
 
+#include <random>
+
+
+enum Weapon_Type
+{
+    First_Weapon = 0,
+    Knife = 0,
+    Axe = 1,
+    Sword = 2,
+    Rapier = 3,
+    Weapons_Amount
+};
+
+
 
 class Weapon
 {
@@ -27,5 +41,8 @@ public:
     inline void set_electric_damage(float _electric_damage) { m_electric_damage = _electric_damage; }
     inline void set_attack_speed(float _attack_speed) { m_attack_speed = _attack_speed; }
 
+    void generate_stats(std::mt19937& generator, Weapon_Type _type);
+
+    void print_stats();
 };
 

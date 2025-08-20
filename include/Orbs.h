@@ -1,5 +1,7 @@
 #pragma once
 
+#include <random>
+
 
 class Orbs
 {
@@ -11,7 +13,7 @@ private:
     float m_increased_attack_speed = 0;
 
 public:
-    // Orbs();
+    Orbs(std::mt19937& generator);
     // ~Orbs();
 
 public:
@@ -26,4 +28,6 @@ public:
     inline void set_increased_electric_damage(float _increased_electric_damage) { m_increased_electric_damage = _increased_electric_damage; }
     inline void set_increased_physical_damage(float _increased_physical_damage) { m_increased_physical_damage = _increased_physical_damage; }
     inline void set_increased_attack_speed(float _increased_attack_speed) { m_increased_attack_speed = _increased_attack_speed; }
+
+    void print_random_increased_damage_orb();
 };
